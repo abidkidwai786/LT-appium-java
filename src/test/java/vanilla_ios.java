@@ -1,102 +1,128 @@
+//package magicleapTesting;
+import java.net.URL;
+import java.util.List;
+import java.net.MalformedURLException;
+
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
-
-import org.openqa.selenium.remote.DesiredCapabilities;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.URL;
-
+import org.openqa.selenium.remote.DesiredCapabilities;
 public class vanilla_ios {
 
-    public static String userName = System.getenv("LT_USERNAME") == null ? "LT_USERNAME"  //Add username here
-            : System.getenv("LT_USERNAME");
-    public static String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "LT_ACCESS_KEY" //Add accessKey here
-            : System.getenv("LT_ACCESS_KEY");
-
-    public static final String URL = "https://" + userName + ":" + accessKey + "@mobile-hub.lambdatest.com/wd/hub";
-    public static IOSDriver driver = null;
-
-    public static void main(String[] args) throws Exception {
-
-       try {
-            DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setCapability("platformVersion", "15");
-            caps.setCapability("deviceName", "iPhone 12");
-            caps.setCapability("isRealMobile", true);
-            caps.setCapability("app", "APP_URL"); //Enter your app url
-            caps.setCapability("platformName", "iOS");
-            caps.setCapability("build", "Java Vanilla - iOS");
-            caps.setCapability("name", "Sample Test Java");
-            caps.setCapability("devicelog", true);
-            caps.setCapability("network", true);
 
 
-        driver = new IOSDriver(new URL("https://" + userName + ":" + accessKey + "@beta-hub.lambdatest.com/wd/hub"), caps);
+    public static String userName = System.getenv("LT_USERNAME");
+    public static String accessKey = System.getenv("LT_ACCESS_KEY");
+    public static String status = "passed";
+    public static AppiumDriver driver;
+
+    public static void main(String args[]) throws MalformedURLException
+    {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("build", "MagellanHealth script");
+        capabilities.setCapability("test", "Test 1");
+
+        capabilities.setCapability("isRealMobile", true);
+        capabilities.setCapability("platformName", "android");
+        capabilities.setCapability("deviceName", "Pixel.*");
+        //capabilities.setCapability("platformVersion", "12");
+        capabilities.setCapability("app","lt://APP10160271581663770709967902");
+
+        //  capabilities.setCapability("deviceOrientation", "PORTRAIT");
+        capabilities.setCapability("console",true);
+        // capabilities.setCapability("network",true);
+        capabilities.setCapability("visual",true);
+        capabilities.setCapability("w3c", true);
+        capabilities.setCapability("region", "US");
+        driver = new AppiumDriver(new URL("http://"+userName+":"+accessKey+"@mobile-hub.lambdatest.com/wd/hub"), capabilities);
+
+        try {
 
 
-            Thread.sleep(2000);
 
-            //Changes color
 
-            driver.findElement(MobileBy.id("color")).click();
-            Thread.sleep(1000);
+              WebDriverWait username = new WebDriverWait(driver, 30);
+              username.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[contains(@class,'android.widget.EditText')])[1]")));
+              driver.findElementByXPath("(//*[contains(@class,'android.widget.EditText')])[1]").click(); // clicking on username text box to focus
 
-            //Back to black color
-            driver.navigate().back();
+            driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "shivbvjcl@gmail.com")); //option 1 to enter USERNAME(should work with iOS too)
 
-            Thread.sleep(1000);
 
-            //Changes the text to proverbial
-            driver.findElement(MobileBy.id("Text")).click();
-            Thread.sleep(1000);
+//              driver.pressKey(new KeyEvent(AndroidKey.S));
+//              driver.pressKey(new KeyEvent(AndroidKey.H));
+//              driver.pressKey(new KeyEvent(AndroidKey.I));
+//              driver.pressKey(new KeyEvent(AndroidKey.V));
+//              driver.pressKey(new KeyEvent(AndroidKey.B));
+//            driver.pressKey(new KeyEvent(AndroidKey.V));
+//            driver.pressKey(new KeyEvent(AndroidKey.J));
+//            driver.pressKey(new KeyEvent(AndroidKey.C));
+//            driver.pressKey(new KeyEvent(AndroidKey.L));
+//            driver.pressKey(new KeyEvent(AndroidKey.AT ));           // Option 2 to enter USERNAME
+//            driver.pressKey(new KeyEvent(AndroidKey.G));
+//            driver.pressKey(new KeyEvent(AndroidKey.M));
+//            driver.pressKey(new KeyEvent(AndroidKey.A));
+//            driver.pressKey(new KeyEvent(AndroidKey.I));
+//            driver.pressKey(new KeyEvent(AndroidKey.L));
+//            driver.pressKey(new KeyEvent(AndroidKey.PERIOD));
+//            driver.pressKey(new KeyEvent(AndroidKey.C));
+//            driver.pressKey(new KeyEvent(AndroidKey.O));
+//            driver.pressKey(new KeyEvent(AndroidKey.M));
 
-            //toast is visible
-            driver.findElement(MobileBy.id("toast")).click();
-            Thread.sleep(1000);
+            WebDriverWait password = new WebDriverWait(driver, 30);
+            password.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[contains(@class,'android.widget.EditText')])[2]")));
+            driver.findElementByXPath("(//*[contains(@class,'android.widget.EditText')])[2]").click(); // clicking on password text box to focus
 
-            //notification is visible
-            driver.findElement(MobileBy.id("notification")).click();
-            Thread.sleep(2000);
+            driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "Testing123!"));  //option 1 to enter PASSWORD(should work with iOS too)
 
-            //Open the geolocation page
-            driver.findElement(MobileBy.id("geoLocation")).click();
-            Thread.sleep(4000);
-            driver.navigate().back();
-            Thread.sleep(1000);
 
-            //Takes to speed test page
-            driver.findElement(MobileBy.id("speedTest")).click();
+//            driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "T"));
+//            driver.pressKey(new KeyEvent(AndroidKey.E));
+//            driver.pressKey(new KeyEvent(AndroidKey.S));
+//            driver.pressKey(new KeyEvent(AndroidKey.T));
+//            driver.pressKey(new KeyEvent(AndroidKey.I));                          // option 2 to enter PASSWORD
+//            driver.pressKey(new KeyEvent(AndroidKey.N));
+//            driver.pressKey(new KeyEvent(AndroidKey.G));
+//            driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+//            driver.pressKey(new KeyEvent(AndroidKey.DIGIT_2));
+//            driver.pressKey(new KeyEvent(AndroidKey.DIGIT_3));
+            //driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "!"));
+
+
+            WebDriverWait signin = new WebDriverWait(driver, 30);
+            signin.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@content-desc=\"Sign in\"]")));
+            driver.findElementByXPath("//android.widget.Button[@content-desc=\"Sign in\"]").click();  //clicking on signing button
+
             Thread.sleep(5000);
-            driver.navigate().back();
-            Thread.sleep(1000);
 
-            //Opens the browser
-            MobileElement browser = (MobileElement) driver.findElementByAccessibilityId("Browser");
-            browser.click();
-            Thread.sleep(3000);
+            WebDriverWait next = new WebDriverWait(driver, 30);
+            next.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@content-desc=\"Next\"]")));
+            driver.findElementByXPath("//android.widget.Button[@content-desc=\"Next\"]").click(); // clicking on next button
 
-           WebDriverWait el7 =  new WebDriverWait(driver, 30);
-           el7.until(ExpectedConditions.elementToBeClickable(MobileBy.id("url")));
-           driver.findElementById("url").sendKeys("https://www.lambdatest.com/");
+            Thread.sleep(2000);
+            driver.findElementByXPath("//android.widget.Button[@content-desc=\"Next\"]").click(); // clicking on next button
 
-            //Clicks on the text box
-            WebDriverWait el = new WebDriverWait(driver,90);
-            MobileElement el4 = (MobileElement) driver.findElementByAccessibilityId("find");
-            el.until(ExpectedConditions.elementToBeClickable(el4));
-            el4.click();
-            el4.sendKeys("Lambdatest");
+            Thread.sleep(2000);
 
-            //((JavascriptExecutor) driver).executeScript("lambda-status=passed");
-            driver.quit();
+            WebDriverWait started = new WebDriverWait(driver, 30);
+            started.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@content-desc=\"Get started\"]")));
+            driver.findElementByXPath("//android.widget.Button[@content-desc=\"Get started\"]").click(); //clicking on get started button
+            Thread.sleep(5000);
 
-        } catch (Exception t) {
-           System.out.println(t);
-           driver.quit();
-
-       }
+            status="passed";
+        }
+        catch (java.lang.Exception e)
+        {
+            System.out.println(e.getMessage());
+            status="failed";
+        }
+        driver.executeScript("lambda-status=" + status);
+        driver.quit();
     }
 }
-
