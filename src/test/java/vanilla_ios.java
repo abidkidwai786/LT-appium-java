@@ -32,7 +32,7 @@ public class vanilla_ios {
             caps.setCapability("smartUI.project", "Private-smartUI");
             caps.setCapability("name", "Sample Test Java");
             caps.setCapability("devicelog", true);
-            caps.setCapability("network", true);
+            caps.setCapability("network", false);
             caps.setCapability("visual", true);
             //caps.setCapability("isPrivateCloud", true); FOR PRIVATE DEVICE uncomment this line and mention the device name and OS version in the above capabilities
 
