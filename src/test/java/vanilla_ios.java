@@ -2,7 +2,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,17 +24,20 @@ public class vanilla_ios {
        try {
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setCapability("platformVersion", "15");
-            caps.setCapability("deviceName", "iPhone 12");
+            caps.setCapability("deviceName", "iPhone .*");
             caps.setCapability("isRealMobile", true);
-            caps.setCapability("app", "APP_URL"); //Enter your app url
+            caps.setCapability("app", "lt://proverbial-ios"); //Enter your app url
             caps.setCapability("platformName", "iOS");
             caps.setCapability("build", "Java Vanilla - iOS");
+            caps.setCapability("smartUI.project", "Private-smartUI");
             caps.setCapability("name", "Sample Test Java");
             caps.setCapability("devicelog", true);
             caps.setCapability("network", true);
+            caps.setCapability("visual", true);
+            //caps.setCapability("isPrivateCloud", true); FOR PRIVATE DEVICE uncomment this line and mention the device name and OS version in the above capabilities
 
 
-        driver = new IOSDriver(new URL("https://" + userName + ":" + accessKey + "@beta-hub.lambdatest.com/wd/hub"), caps);
+            driver = new IOSDriver(new URL("https://" + userName + ":" + accessKey + "@mobile-hub.lambdatest.com/wd/hub"), caps);
 
 
             Thread.sleep(2000);
@@ -42,6 +45,7 @@ public class vanilla_ios {
             //Changes color
 
             driver.findElement(MobileBy.id("color")).click();
+            ((JavascriptExecutor) driver).executeScript("smartui.takeScreenshot=image1"); //SNAPSHOT COMMAND
             Thread.sleep(1000);
 
             //Back to black color
