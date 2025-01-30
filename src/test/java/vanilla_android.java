@@ -19,15 +19,16 @@ public class vanilla_android {
 
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("deviceName", "Galaxy S20");
+            capabilities.setCapability("deviceName", "Galaxy .*");
             capabilities.setCapability("platformVersion", "11");
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("isRealMobile", true);
-            capabilities.setCapability("app", "lt://APP1016039551692568957030344"); //Enter your app url
+            capabilities.setCapability("app", "lt://proverbial-android"); //Enter your app url
             capabilities.setCapability("deviceOrientation", "PORTRAIT");
             capabilities.setCapability("build", "Java Vanilla - Android");
             capabilities.setCapability("name", "Sample Test Java");
             capabilities.setCapability("console", true);
+            capabilities.setCapability("smartUI.project", "Private-smartUI");
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
@@ -36,6 +37,8 @@ public class vanilla_android {
 
             MobileElement color = (MobileElement) driver.findElement(MobileBy.id("com.lambdatest.proverbial:id/color"));
             color.click();
+
+            ((JavascriptExecutor) driver).executeScript("smartui.takeScreenshot=image1"); //SCREENSHOT CAPTURE
 
             MobileElement text = (MobileElement) driver.findElement(MobileBy.id("com.lambdatest.proverbial:id/Text"));
             //Changes the text to proverbial
