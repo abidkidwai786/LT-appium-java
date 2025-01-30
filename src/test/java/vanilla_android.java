@@ -32,6 +32,8 @@ public class vanilla_android {
             capabilities.setCapability("network", false);
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
+            //caps.setCapability("isPrivateCloud", true); FOR PRIVATE DEVICE uncomment this line and mention the device name and OS version in the above capabilities
+
 
             driver = new AppiumDriver(new URL("https://" +userName + ":" + accessKey + "@mobile-hub.lambdatest.com/wd/hub"), capabilities);
 
