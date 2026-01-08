@@ -26,7 +26,7 @@ public class vanilla_ios {
             caps.setCapability("platformVersion", "15");
             caps.setCapability("deviceName", "iPhone 12");
             caps.setCapability("isRealMobile", true);
-            caps.setCapability("app", "APP_URL"); //Enter your app url
+            caps.setCapability("app", "lt://proverbial-ios"); //Enter your app url
             caps.setCapability("platformName", "iOS");
             caps.setCapability("build", "Java Vanilla - iOS");
             caps.setCapability("name", "Sample Test Java");
@@ -99,4 +99,5 @@ public class vanilla_ios {
        }
     }
 }
+
 
