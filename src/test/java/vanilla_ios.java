@@ -23,8 +23,8 @@ public class vanilla_ios {
 
        try {
             DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setCapability("platformVersion", "15");
-            caps.setCapability("deviceName", "iPhone 12");
+            caps.setCapability("platformVersion", "18");
+            caps.setCapability("deviceName", "iPhone.*");
             caps.setCapability("isRealMobile", true);
             caps.setCapability("app", "lt://proverbial-ios"); //Enter your app url
             caps.setCapability("platformName", "iOS");
@@ -99,5 +99,6 @@ public class vanilla_ios {
        }
     }
 }
+
 
 
