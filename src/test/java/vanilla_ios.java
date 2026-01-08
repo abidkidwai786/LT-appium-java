@@ -34,7 +34,7 @@ public class vanilla_ios {
             caps.setCapability("network", true);
 
 
-        driver = new IOSDriver(new URL("https://" + userName + ":" + accessKey + "@beta-hub.lambdatest.com/wd/hub"), caps);
+        driver = new IOSDriver(new URL("https://" + userName + ":" + accessKey + "@mobile-hub.lambdatest.com/wd/hub"), caps);
 
 
             Thread.sleep(2000);
@@ -99,6 +99,7 @@ public class vanilla_ios {
        }
     }
 }
+
 
 
 
