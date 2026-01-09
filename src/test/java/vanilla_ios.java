@@ -28,7 +28,8 @@ public class vanilla_ios {
             caps.setCapability("isRealMobile", true);
             caps.setCapability("app", "lt://proverbial-ios"); //Enter your app url
             caps.setCapability("platformName", "iOS");
-            caps.setCapability("build", "jenkins-${LT_BUILD_NAME}");
+            String buildName = "jenkins-" + System.getenv("LT_BUILD_NAME"); 
+            caps.setCapability("build", buildName);
             caps.setCapability("name", "Sample Test Java");
             caps.setCapability("devicelog", true);
             caps.setCapability("network", true);
@@ -99,6 +100,7 @@ public class vanilla_ios {
        }
     }
 }
+
 
 
 
